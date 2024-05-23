@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ujianController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/', [DashboardController::class,'index']);
+Route::get('/ujian', [ujianController::class,'ujianPage']);
+Route::get('/ujian/{id}', [ujianController::class,'DetailUjianPage']);
