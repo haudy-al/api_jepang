@@ -8,13 +8,48 @@ use Livewire\Component;
 
 class UjianPage extends Component
 {
+
+    public $btnTambahSoal = false;
+
+    public $title;
+    public $description;  
+    public $start_time;
+    public $end_time;
+    public $work_time = 60;
+
     protected $listeners = ['DeleteUjianEmit' => 'DeleteUjian'];
 
     public function render()
     {
+
+        if ($this->work_time < 0) {
+            $this->work_time = 0;
+            ltrim($this->work_time, '0');
+
+        }
+        
         $dataUjian = UjianModel::orderBy('created_at', 'DESC')->get();
 
         return view('livewire.ujian-page', ['data' => $dataUjian]);
+    }
+
+    function clickTambahUjianBtn() {
+        $this->btnTambahSoal = true;
+    }
+
+    function clickCloseTambahUjianBtn() {
+        $this->btnTambahSoal = false;
+    }
+
+    function submit() {
+        $this->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'work_time' => 'required',
+           
+        ]);
     }
 
     function DeleteUjian($id)

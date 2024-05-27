@@ -21,13 +21,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Route::get('auth/google', [AuthController::class, 'redirectToGoogle']);
-Route::post('auth/google', [AuthController::class, 'handleGoogleCallback']);
+
+Route::middleware('api.key')->group(function () {
+    Route::post('auth/google', [AuthController::class, 'handleGoogleCallback']);
 
 
-Route::get('ujian', [ujianController::class, 'getUjianData']);
-Route::get('ujian/soal/{ujian_id}', [ujianController::class, 'getUjianSoalData']);
-Route::get('ujian-token/{ujian_id}/{user_id}', [ujianController::class, 'getUjianToken']);
-Route::get('ujian-token/{token}', [ujianController::class, 'checkUjianToken']);
-
-
-
+    Route::get('ujian', [ujianController::class, 'getUjianData']);
+    Route::get('ujian/soal/{ujian_id}', [ujianController::class, 'getUjianSoalData']);
+    Route::get('ujian-token/{token}', [ujianController::class, 'checkUjianToken']);
+    Route::get('ujian-token/{ujian_id}/{user_id}', [ujianController::class, 'getUjianToken']);
+});

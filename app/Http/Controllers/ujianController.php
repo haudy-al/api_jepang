@@ -33,9 +33,11 @@ class ujianController extends Controller
 
     function getUjianToken($ujian_id, $user_id)
     {
-        $dataUjian = UjianModel::where('id',$user_id)->get()->first();
+        $dataUjian = UjianModel::where('id',$ujian_id)->get()->first();
         $data = UjianTokenModel::where('ujian_id', $ujian_id)->where('user_id', $user_id)->first();
         if (!$data) {
+
+           
             $now = Carbon::now();
             $tenMinutesLater = $now->addMinutes($dataUjian->work_time);
             $formattedDateTime = $tenMinutesLater->toDateTimeString();
