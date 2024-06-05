@@ -18,4 +18,6 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+	RewriteRule ^(.*)$ $1 [NS,E=no-gzip:1,E=dont-vary:1]
 </IfModule>
