@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\JishoController;
 use App\Http\Controllers\ujianController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,5 @@ Route::middleware('api.key')->group(function () {
     Route::get('ujian-token/{token}', [ujianController::class, 'checkUjianToken']);
     Route::get('ujian-token/{ujian_id}/{user_id}', [ujianController::class, 'getUjianToken']);
 });
+
+Route::get('/jisho', [JishoController::class, 'search']);
