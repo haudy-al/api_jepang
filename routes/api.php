@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\JishoController;
+use App\Http\Controllers\leaderboardController;
 use App\Http\Controllers\ujianController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,4 @@ Route::middleware('api.key')->group(function () {
 });
 
 Route::get('/jisho', [JishoController::class, 'search']);
+Route::get('/leaderboard', [leaderboardController::class, 'getData']);

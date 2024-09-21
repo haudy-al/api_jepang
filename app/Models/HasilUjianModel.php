@@ -13,4 +13,14 @@ class HasilUjianModel extends Model
 
     protected $guarded = [];
 
+    public function ujian()
+    {
+        return $this->belongsTo(UjianModel::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
