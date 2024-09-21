@@ -70,6 +70,13 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" wire:model='points' placeholder="Poin.." />
+                            @error('points')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                         <br>
                         <button type="button" class="btn badge btn-info" wire:click="addInput">Tambah Pilihan</button>
                         <label for="inputImage" class="btn badge btn-secondary text-light"><i

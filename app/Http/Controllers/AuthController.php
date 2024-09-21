@@ -7,6 +7,7 @@ use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -45,5 +46,23 @@ class AuthController extends Controller
             return response()->json(['error' => 'Failed to authenticate'], 500);
         }
         
+    }
+
+
+    function handleLogin(Request $request) {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json(['message' => 'Login gagal, periksa email dan password Anda'], 401);
+        }
+
+        $token = $user->createToken('authToken')->plainTextToken;
+
+        return response()->json(['token' => $token, 'message' => 'Login berhasil'], 200);
     }
 }

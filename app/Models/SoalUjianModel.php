@@ -18,7 +18,8 @@ class SoalUjianModel extends Model
         'choices',
         'correct_answer',
         'audio_url',
-        'image_url'
+        'image_url',
+        'points'
     ];
 
     protected $casts = [

@@ -66,5 +66,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin.auth' => \App\Http\Middleware\AuthMiddleware::class,
         'api.key' => \App\Http\Middleware\ApiKeyMiddleware::class,
+        'google.drive' => \App\Http\Middleware\GoogleDriveMiddleware::class,
+
     ];
 }

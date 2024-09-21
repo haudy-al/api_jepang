@@ -74,6 +74,11 @@
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>{{ $item->title }}</td>
                                     <td>
+                                        <a href="/ujian/{{ $item->id }}/hasil" rel="tooltip" title=""
+                                            class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
+                                            data-original-title="Detail">
+                                           Hasil
+                                        </a>
                                         <a href="/ujian/{{ $item->id }}" rel="tooltip" title=""
                                             class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
                                             data-original-title="Detail">

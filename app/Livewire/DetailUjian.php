@@ -7,26 +7,59 @@ use App\Models\UjianModel;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
+use Google\Client as GoogleClient;
+use Google\Service\Drive as GoogleDrive;
+use Google\Service\Drive\DriveFile;
+
 class DetailUjian extends Component
 {
 
     use WithFileUploads;
+   
+
+    public $idUjian;
+
+
+    protected $drive;
+    protected $client;
 
     // komponen
     public $tambahSoalBtn = false;
     // end komponen
 
-    public $idUjian;
 
     public $question;
+    public $points;
     public $image;
     public $audio;
     public $inputs = [''];
     public $correct_answer;
     
+    
+
     public function mount($id)
     {
+
+        // dd(session()->get('google_drive_token'));
+
+
         $this->idUjian = $id;
+
+        // $this->client = new GoogleClient();
+        // $this->client->setClientId(env('GOOGLE_CLIENT_ID'));
+        // $this->client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+        // $this->client->setRedirectUri(env('GOOGLE_REDIRECT_URL'));
+    
+        // if (session()->has('google_drive_token')) {
+        //     $this->client->setAccessToken(session()->get('google_drive_token'));
+        //     $this->drive = new GoogleDrive($this->client);
+
+        //     // dd($this->drive->files);
+        
+
+        // } else {
+        //     // Handle situasi ketika token tidak tersedia
+        // }
     }
 
     function clickTambahSoalBtn() {
@@ -86,6 +119,20 @@ class DetailUjian extends Component
             $imagePath = $this->image->store('images', 'public');
         }
 
+        // if ($this->image) {
+        //     $file = $this->image->getRealPath();
+        //     $fileMetadata = new DriveFile([
+        //         'name' => $this->image->getClientOriginalName(),
+        //     ]);
+        //     $content = file_get_contents($file);
+        //     $uploadedFile = $this->drive->files->create($fileMetadata, [
+        //         'data' => $content,
+        //         'mimeType' => $this->image->getMimeType(),
+        //         'uploadType' => 'multipart',
+        //     ]);
+        //     $imagePath = $uploadedFile->getWebContentLink();
+        // }
+
         SoalUjianModel::create([
             'ujian_id'=>$this->idUjian,
             'type'=>$type,
@@ -93,7 +140,9 @@ class DetailUjian extends Component
             'choices'=>$inputsValues,
             'correct_answer'=>$this->correct_answer,
             'audio_url'=>$audioPath ?? null,
-            'image_url'=>$imagePath ?? null
+            'image_url'=>$imagePath ?? null,
+            'points'=>$this->points
+
         ]);
 
 
