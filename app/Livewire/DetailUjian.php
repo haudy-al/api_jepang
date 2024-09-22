@@ -102,7 +102,7 @@ class DetailUjian extends Component
         $this->validate([
             'inputs.*' => 'required|string',
             'question' => 'required|string',
-            'audio' => 'nullable|file|mimes:m4a,mpga,mp3,wav,m4a|max:3240', 
+            'audio' => 'nullable|file|mimes:mpga,mp3,wav,m4a,audio/mp4,audio/x-m4a|max:3240',
             'image' => 'nullable|image|mimes:png,jpg,jpeg|max:3240',
         ]);
 
