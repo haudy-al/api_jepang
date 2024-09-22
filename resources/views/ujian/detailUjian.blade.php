@@ -6,6 +6,7 @@
    
 @endsection
 @section('content')
+
     
     @livewire('detail-ujian', ['id' => $id])
 

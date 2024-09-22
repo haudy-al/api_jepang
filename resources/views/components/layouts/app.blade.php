@@ -38,7 +38,7 @@
             @include('layouts.navbar')
             <div class="panel-header">
             </div>
-            @yield('content')
+            {{ $slot }}
             <footer class="footer">
                 <div class=" container-fluid ">
 

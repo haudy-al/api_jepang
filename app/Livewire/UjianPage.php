@@ -50,6 +50,17 @@ class UjianPage extends Component
             'work_time' => 'required',
            
         ]);
+
+        UjianModel::create([
+            'title' => $this->title,
+            'description' => $this->description,
+            'start_time' => $this->start_time,
+            'end_time' => $this->end_time,
+            'work_time' => $this->work_time,
+        ]);
+
+        $this->clickCloseTambahUjianBtn();
+        $this->dispatch('success',['message'=>'Data Berhasil Ditambahkan']);
     }
 
     function DeleteUjian($id)
