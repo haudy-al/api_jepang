@@ -26,7 +26,7 @@
                                 <td>{{ $item->points }}</td>
                                 <td>
                                     
-                                  <button>Cetak</button>
+                                  <button wire:click='BTNSendCertificate({{ $item->id }})'>Cetak</button>
 
                                 </td>
 
